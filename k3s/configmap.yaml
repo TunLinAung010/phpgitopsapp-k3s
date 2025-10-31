@@ -2,20 +2,20 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: phpapp1-code
-  namespace: phpapp1
+  namespace: phpgitopsapp
 data:
   index.php: |
     <?php
     require_once __DIR__ . '/../src/App.php';
 
     $app = new App();
-    echo "<h1>Welcome to PHPApp1 on K3s (Production)</h1>";
-    echo "<p>Domain: phpapp1.owaymylab.com</p>";
+    echo "<h1>Welcome to PHPGitOpsApp on K3s (Production)</h1>";
+    echo "<p>Domain: phpgitopsapp.owaymylab.com</p>";
     echo "<p>Version: " . $app->getVersion() . "</p>";
   default.conf: |
     server {
         listen 80;
-        server_name phpapp1.owaymylab.com;
+        server_name phpgitopsapp.owaymylab.com;
 
         root /var/www/html/public;
         index index.php;
