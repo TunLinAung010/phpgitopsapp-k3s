@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpapp1
+  namespace: phpapp1
+spec:
+  selector:
+    app: phpapp1
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  type: ClusterIP

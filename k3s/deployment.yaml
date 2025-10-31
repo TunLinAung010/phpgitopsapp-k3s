@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpapp1
+  namespace: phpapp1
+  labels:
+    app: phpapp1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: phpapp1
+  template:
+    metadata:
+      labels:
+        app: phpapp1
+    spec:
+      containers:
+        - name: phpapp1
+          image: richarvey/nginx-php-fpm:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: phpapp1-nginx
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: default.conf
+            - name: phpapp1-code
+              mountPath: /var/www/html
+      volumes:
+        - name: phpapp1-nginx
+          configMap:
+            name: phpapp1-code
+        - name: phpapp1-code
+          configMap:
+            name: phpapp1-code
