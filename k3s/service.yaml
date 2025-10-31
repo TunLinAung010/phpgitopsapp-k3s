@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: phpapp1
-  namespace: phpapp1
+  name: phpgitopsapp
+  namespace: phpgitopsapp
 spec:
   selector:
-    app: phpapp1
+    app: phpgitopsapp
   ports:
     - name: http
       port: 80
