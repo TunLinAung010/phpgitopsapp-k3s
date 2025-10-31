@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: phpapp1
-  namespace: phpapp1
+  name: phpgitopsapp
+  namespace: phpgitopsapp
   labels:
-    app: phpapp1
+    app: phpgitopsapp
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: phpapp1
+      app: phpgitopsapp
   template:
     metadata:
       labels:
-        app: phpapp1
+        app: phpgitopsapp
     spec:
       containers:
-        - name: phpapp1
+        - name: phpgitopsapp
           image: richarvey/nginx-php-fpm:latest
           ports:
             - containerPort: 80
           volumeMounts:
-            - name: phpapp1-nginx
+            - name: phpgitopsapp-nginx
               mountPath: /etc/nginx/conf.d/default.conf
               subPath: default.conf
-            - name: phpapp1-code
+            - name: phpgitopsapp-code
               mountPath: /var/www/html
       volumes:
-        - name: phpapp1-nginx
+        - name: phpgitopsapp-nginx
           configMap:
-            name: phpapp1-code
-        - name: phpapp1-code
+            name: phpgitopsapp-code
+        - name: phpgitopsapp-code
           configMap:
-            name: phpapp1-code
+            name: phpgitopsapp-code
